@@ -6,9 +6,6 @@
 
 **Version:** 1.0
 
-For more information on this project see the attached files in the 
-'documentation' folder.
-
 ---
 
 **Requirements**
