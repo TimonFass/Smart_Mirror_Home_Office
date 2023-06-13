@@ -146,7 +146,7 @@ class Gui(tk.Tk):
         if weather_data is None:
 
             error_label = tk.Label(self, text="Error retrieving weather data.")
-            error_label.place(relx=0.1, rely=0.55, relwidth=0.2, relheight=0.4)
+            error_label.place(relx=0.1, rely=0.55, relwidth=0.2, relheight=0.1)
             return
 
         # Unpack weather data
