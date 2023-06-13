@@ -69,8 +69,8 @@ class Gui(tk.Tk):
         """  
 
         # Variable to connect to OpenWeather user account
-        API_KEY = "f9e44c32c94cb2a44cf3eea03c1d4850"
-        
+        API_KEY = "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+                
         # City of which the weather data is displayed
         CITY = "Wilhelmshaven, DE"
 
@@ -128,6 +128,17 @@ class Gui(tk.Tk):
         label_date = Label(self, text=actual_date, font=text_style_big, bg='black', fg='white', bd=25)
         label_date.place(relx=0.5, rely=0.25, relwidth=0.4, anchor='n')
 
+        # Clock settings
+        self.time_live = tk.StringVar() 
+        self.label = Label(self, textvariable=self.time_live,font=text_style_big, bg='black', fg='white', bd=25)
+        self.label.place(relx=0.5, rely=0.35, relwidth=0.2,  anchor='n')
+    
+        # Embedding of escape to close the GUI
+        self.bind('<Escape>', (lambda event: exit()))
+
+        # Request of function digital_clock()
+        self.digital_clock()
+
         # Get the weather data by calling the function 'get_weather_data' with API_KEY and CITY  
         weather_data = self.get_weather_data(API_KEY, CITY)
         
@@ -135,7 +146,7 @@ class Gui(tk.Tk):
         if weather_data is None:
 
             error_label = tk.Label(self, text="Error retrieving weather data.")
-            error_label.pack()
+            error_label.place(relx=0.1, rely=0.55, relwidth=0.2, relheight=0.4)
             return
 
         # Unpack weather data
@@ -178,18 +189,6 @@ class Gui(tk.Tk):
         label_w_pic.configure(image=picture_weather)
         label_w_pic.image = picture_weather
         label_w_pic.place(relx=0.2, rely=0.4,anchor='n')
-
-        # Clock settings
-        self.time_live = tk.StringVar() 
-        self.label = Label(self, textvariable=self.time_live,font=text_style_big, bg='black', fg='white', bd=25)
-        self.label.place(relx=0.5, rely=0.35, relwidth=0.2,  anchor='n')
-    
-        # Embedding of escape to close the GUI
-        self.bind('<Escape>', (lambda event: exit()))
-
-        # Request of function digital_clock()
-        self.digital_clock()
-    
 
 
     def get_weather_data(self, api_key, city):
